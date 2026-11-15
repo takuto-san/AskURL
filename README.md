@@ -59,14 +59,16 @@ docker build --build-arg INSTALL_DAYTONA=1 -t askurl-daytona .
   export DAYTONA_API_KEY NOSANA_SERVICE_URL
   docker run --rm \
     -e DAYTONA_API_KEY -e NOSANA_SERVICE_URL -e NOSANA_MODEL=qwen3.5:9b \
-    askurl-daytona --daytona https://example.com/
+    askurl-daytona --daytona https://raw.githubusercontent.com/takuto-san/AskURL/main/README.md
 )
 ```
 
 `Daytona でページ本文を取得しました。` に続いて日本語の回答が表示されれば成功です。
 
+Daytona の Tier 1・2 では、サンドボックスからアクセスできる外部ホストが制限されます。上の例では、許可リストに入っている GitHub の公開ファイルを使います。任意の公開 URL を試す場合は、組織のネットワークポリシーを確認してください。[Daytona のネットワーク制限](https://www.daytona.io/docs/en/network-limits/)
+
 ## 動作確認の状況
 
 - Docker コンテナで `https://example.com/` の本文を取得し、Nosana 上の Qwen 3.5 9B が返した日本語の回答をターミナルに表示できることを確認済みです。
 - 共有推論 API には Docker コンテナから到達でき、未認証の `/v1/models` は `HTTP 401` を返すことを確認済みです。共有推論 API での回答生成は未確認です。
-- Daytona モードは Docker で、Daytona SDK と Nosana API を模擬して確認済みです。Daytona の実機から Nosana まで通す確認はこれからです。
+- Daytona モードでは、実際のサンドボックスで GitHub の公開 README を取得し、Nosana 上の Qwen 3.5 9B の回答がターミナルに表示されることを確認済みです。

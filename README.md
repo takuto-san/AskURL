@@ -1,6 +1,12 @@
+<img src="assets/askurl-icon.png" alt="AskURL のドット絵アイコン" width="96">
+
 # AskURL
 
+**日本語** · [English](README.en.md) · [简体中文](README.zh-CN.md)
+
 公開ページの URL を渡すと、本文を取得し、Nosana のモデルが要点や次の対応を日本語で 1〜2 文にまとめる CLI です。HTML とプレーンテキストに対応しています。
+
+Daytona モードでは、隔離された一時サンドボックスで本文を取得します。Docker で動く CLI が本文を Nosana に送り、モデルの回答をターミナルに表示します。
 
 ## Docker で実行する
 

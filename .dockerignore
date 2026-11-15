@@ -1,7 +1,6 @@
 **
 !Dockerfile
 !main.py
-!prompt.py
 !adapters/
 !adapters/*.py
 !config/

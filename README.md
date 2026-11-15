@@ -47,20 +47,19 @@ Mac のターミナル（zsh）で以下を実行します。プロンプトが�
 
 `--daytona` を指定すると、一時的な Daytona サンドボックスで公開 URL の本文を取得します。取得した本文を Docker 側で Nosana に渡し、実行後にサンドボックスを削除します。
 
-[Daytona の API Keys 画面](https://app.daytona.io/dashboard/keys) で、Sandboxes の Write（`write:sandboxes`）と Delete（`delete:sandboxes`）を付けたキーを用意します。以下は Qwen 3.5 9B テンプレートを使う場合の Mac（zsh）向けの例です。プロンプトに Daytona のキーと Nosana のサービス URL を入力します。キーは画面に表示されません。
+[Daytona の API Keys 画面](https://app.daytona.io/dashboard/keys) で、Sandboxes の Write（`write:sandboxes`）と Delete（`delete:sandboxes`）を付けたキーを用意します。初回だけ `.env.example` を `.env` にコピーし、`DAYTONA_API_KEY` と `NOSANA_SERVICE_URL` を入力します。`.env` は Git と Docker のビルド対象から除外しています。
 
-```zsh
+```sh
+cp -n .env.example .env
+chmod 600 .env
+```
+
+保存した設定を Docker の実行時に読み込みます。
+
+```sh
 docker build --build-arg INSTALL_DAYTONA=1 -t askurl-daytona .
-(
-  read -rs 'DAYTONA_API_KEY?Daytona API キー: ' || exit 1
-  printf '\n'
-  read -r 'NOSANA_SERVICE_URL?Nosana Service URL: ' || exit 1
-  [[ -n $DAYTONA_API_KEY && -n $NOSANA_SERVICE_URL ]] || exit 1
-  export DAYTONA_API_KEY NOSANA_SERVICE_URL
-  docker run --rm \
-    -e DAYTONA_API_KEY -e NOSANA_SERVICE_URL -e NOSANA_MODEL=qwen3.5:9b \
-    askurl-daytona --daytona https://raw.githubusercontent.com/takuto-san/AskURL/main/README.md
-)
+docker run --rm --env-file .env \
+  askurl-daytona --daytona https://raw.githubusercontent.com/takuto-san/AskURL/main/README.md
 ```
 
 `Daytona でページ本文を取得しました。` に続いて日本語の回答が表示されれば成功です。

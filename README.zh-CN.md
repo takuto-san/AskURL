@@ -2,7 +2,7 @@
 
 # AskURL
 
-[日本語](README.md) · [English](README.en.md) · **简体中文**
+[日本語](README.ja.md) · [English](README.md) · **简体中文**
 
 AskURL 是一个命令行工具。输入公开网页的 URL 后，它会提取正文，并让 Nosana 上的模型用一到两句日语给出摘要或后续处理建议。支持 HTML 和纯文本。
 

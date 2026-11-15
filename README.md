@@ -8,6 +8,10 @@ AskURL is a command-line tool that reads a public web page and asks a model on N
 
 In Daytona mode, an isolated, temporary sandbox fetches the page. The CLI runs in Docker, sends the extracted text to Nosana, and prints the answer in your terminal.
 
+## Demo
+
+[Watch the terminal demo (English, MP4)](assets/askurl-demo-en.mp4). It shows Daytona creating a temporary sandbox and fetching the page, followed by Nosana generating a short English response.
+
 ## Run with Docker
 
 Start Docker Desktop or another Docker engine, then build the image from the repository root.

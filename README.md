@@ -43,7 +43,30 @@ Mac のターミナル（zsh）で以下を実行します。プロンプトが�
 
 `ページ本文を取得しました。` に続いて、モデルの回答が表示されれば成功です。既定では Nosana のモデル一覧の先頭を使います。モデルを固定する場合は、`docker run` に `-e NOSANA_MODEL=モデルID` を追加してください。
 
+### Daytona のサンドボックスで本文を取得する
+
+`--daytona` を指定すると、一時的な Daytona サンドボックスで公開 URL の本文を取得します。取得した本文を Docker 側で Nosana に渡し、実行後にサンドボックスを削除します。
+
+[Daytona の API Keys 画面](https://app.daytona.io/dashboard/keys) で、Sandboxes の Write（`write:sandboxes`）と Delete（`delete:sandboxes`）を付けたキーを用意します。以下は Qwen 3.5 9B テンプレートを使う場合の Mac（zsh）向けの例です。プロンプトに Daytona のキーと Nosana のサービス URL を入力します。キーは画面に表示されません。
+
+```zsh
+docker build --build-arg INSTALL_DAYTONA=1 -t askurl-daytona .
+(
+  read -rs 'DAYTONA_API_KEY?Daytona API キー: ' || exit 1
+  printf '\n'
+  read -r 'NOSANA_SERVICE_URL?Nosana Service URL: ' || exit 1
+  [[ -n $DAYTONA_API_KEY && -n $NOSANA_SERVICE_URL ]] || exit 1
+  export DAYTONA_API_KEY NOSANA_SERVICE_URL
+  docker run --rm \
+    -e DAYTONA_API_KEY -e NOSANA_SERVICE_URL -e NOSANA_MODEL=qwen3.5:9b \
+    askurl-daytona --daytona https://example.com/
+)
+```
+
+`Daytona でページ本文を取得しました。` に続いて日本語の回答が表示されれば成功です。
+
 ## 動作確認の状況
 
 - Docker コンテナで `https://example.com/` の本文を取得し、Nosana 上の Qwen 3.5 9B が返した日本語の回答をターミナルに表示できることを確認済みです。
 - 共有推論 API には Docker コンテナから到達でき、未認証の `/v1/models` は `HTTP 401` を返すことを確認済みです。共有推論 API での回答生成は未確認です。
+- Daytona モードは Docker で、Daytona SDK と Nosana API を模擬して確認済みです。Daytona の実機から Nosana まで通す確認はこれからです。

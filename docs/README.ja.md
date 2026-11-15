@@ -1,10 +1,10 @@
-<img src="assets/askurl-icon.png" alt="AskURL のドット絵アイコン" width="96">
+<img src="../assets/askurl-icon.png" alt="AskURL のドット絵アイコン" width="96">
 
 # AskURL
 
-**日本語** · [English](README.md) · [简体中文](README.zh-CN.md)
+**日本語** · [English](../README.md) · [简体中文](README.zh-CN.md)
 
-公開ページの URL を渡すと、本文を取得し、Nosana のモデルが要点や次の対応を日本語で 1〜2 文にまとめる CLI です。HTML とプレーンテキストに対応しています。
+公開ページの URL を渡すと、本文を取得し、Nosana のモデルが要点や次の対応を 1〜2 文にまとめる CLI です。HTML とプレーンテキストに対応しています。既定では日本語で回答し、`--language en` を付けると英語で回答します。
 
 Daytona モードでは、隔離された一時サンドボックスで本文を取得します。Docker で動く CLI が本文を Nosana に送り、モデルの回答をターミナルに表示します。
 
@@ -71,6 +71,10 @@ docker run --rm --env-file .env \
 `Daytona でページ本文を取得しました。` に続いて日本語の回答が表示されれば成功です。
 
 Daytona の Tier 1・2 では、サンドボックスからアクセスできる外部ホストが制限されます。上の例では、許可リストに入っている GitHub の公開ファイルを使います。任意の公開 URL を試す場合は、組織のネットワークポリシーを確認してください。[Daytona のネットワーク制限](https://www.daytona.io/docs/en/network-limits/)
+
+### プロンプトを変更する
+
+[`config/prompts.toml`](../config/prompts.toml) の日本語（`ja`）または英語（`en`）の本文を編集し、Docker イメージを再ビルドします。
 
 ## 動作確認の状況
 

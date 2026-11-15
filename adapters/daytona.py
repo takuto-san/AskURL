@@ -2,12 +2,13 @@ import json
 import os
 import shlex
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
 from adapters import web
 
 
-def read_page(url: str) -> str:
+def read_page(url: str, *, on_started: Callable[[str], None] | None = None) -> str:
     if not os.environ.get("DAYTONA_API_KEY", "").strip():
         raise ValueError("DAYTONA_API_KEY を実行環境に設定してください。")
     try:
@@ -26,6 +27,8 @@ def read_page(url: str) -> str:
             timeout=60,
         )
         try:
+            if on_started is not None:
+                on_started(sandbox.id)
             response = sandbox.process.exec(command, timeout=35)
         finally:
             try:

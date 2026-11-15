@@ -2,9 +2,9 @@
 
 # AskURL
 
-[日本語](README.ja.md) · **English** · [简体中文](README.zh-CN.md)
+[日本語](docs/README.ja.md) · **English** · [简体中文](docs/README.zh-CN.md)
 
-AskURL is a command-line tool that reads a public web page and asks a model on Nosana for a short Japanese summary or suggested next step. It accepts HTML and plain text and aims for an answer of one or two sentences.
+AskURL is a command-line tool that reads a public web page and asks a model on Nosana for a short summary or suggested next step. It accepts HTML and plain text and aims for an answer of one or two sentences. Responses are in Japanese by default. Add `--language en` for English.
 
 In Daytona mode, an isolated, temporary sandbox fetches the page. The CLI runs in Docker, sends the extracted text to Nosana, and prints the answer in your terminal.
 
@@ -63,7 +63,11 @@ docker run --rm --env-file .env \
   askurl-daytona --daytona https://raw.githubusercontent.com/takuto-san/AskURL/main/README.md
 ```
 
-The CLI confirms in Japanese that Daytona fetched the page, then prints the model's answer. Daytona Tier 1 and 2 restrict outbound hosts. This example uses a public file on an allowed GitHub domain. Check your organization policy for other URLs. See [Daytona network limits](https://www.daytona.io/docs/en/network-limits/).
+By default, the CLI confirms in Japanese that Daytona fetched the page, then prints the model's answer. Daytona Tier 1 and 2 restrict outbound hosts. This example uses a public file on an allowed GitHub domain. Check your organization policy for other URLs. See [Daytona network limits](https://www.daytona.io/docs/en/network-limits/).
+
+### Customize the prompts
+
+Edit the Japanese (`ja`) or English (`en`) text in [`config/prompts.toml`](config/prompts.toml), then rebuild the Docker image to apply the change.
 
 ## Verified behavior
 

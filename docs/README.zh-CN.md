@@ -1,10 +1,10 @@
-<img src="assets/askurl-icon.png" alt="AskURL 像素风图标" width="96">
+<img src="../assets/askurl-icon.png" alt="AskURL 像素风图标" width="96">
 
 # AskURL
 
-[日本語](README.ja.md) · [English](README.md) · **简体中文**
+[日本語](README.ja.md) · [English](../README.md) · **简体中文**
 
-AskURL 是一个命令行工具。输入公开网页的 URL 后，它会提取正文，并让 Nosana 上的模型用一到两句日语给出摘要或后续处理建议。支持 HTML 和纯文本。
+AskURL 是一个命令行工具。输入公开网页的 URL 后，它会提取正文，并让 Nosana 上的模型用一到两句话给出摘要或后续处理建议。支持 HTML 和纯文本。默认用日语回答，添加 `--language en` 可切换为英语。
 
 在 Daytona 模式下，网页正文由隔离的临时沙箱提取。运行在 Docker 中的 CLI 会把正文发送给 Nosana，并在终端显示模型的回答。
 
@@ -64,6 +64,10 @@ docker run --rm --env-file .env \
 ```
 
 终端会先用日语确认 Daytona 已获取正文，然后显示模型的回答。Daytona 的 Tier 1 和 Tier 2 会限制沙箱可以访问的外部域名。本示例使用许可列表中的 GitHub 公共文件。测试其他 URL 前，请确认所在组织的网络策略。参见 [Daytona 网络限制](https://www.daytona.io/docs/en/network-limits/)。
+
+### 自定义提示词
+
+在 [`config/prompts.toml`](../config/prompts.toml) 中编辑日语（`ja`）或英语（`en`）提示词，然后重新构建 Docker 镜像以应用更改。
 
 ## 已验证的功能
 

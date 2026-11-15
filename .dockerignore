@@ -4,3 +4,5 @@
 !prompt.py
 !adapters/
 !adapters/*.py
+!config/
+!config/prompts.toml

@@ -2,7 +2,7 @@ import argparse
 import sys
 
 from adapters import daytona, nosana, web
-from triage import decide_action
+from prompt import decide_action
 
 
 def main() -> int:

@@ -6,7 +6,11 @@
 
 ## 演示
 
-[观看终端演示（英语，MP4）](../assets/askurl-demo-en.mp4)。视频展示了 Daytona 如何在临时沙箱内获取网页正文，以及 Nosana 生成的简短英文回答如何显示在终端中。
+https://github.com/user-attachments/assets/d0e51fc4-6135-463f-99c5-d8102b2419c0
+
+视频展示了 Daytona 如何在临时沙箱内获取网页正文，以及 Nosana 生成的简短英文回答如何显示在终端中。
+
+[下载 MP4](../assets/askurl-demo-en.mp4)
 
 ## 项目简介
 

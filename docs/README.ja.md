@@ -6,7 +6,11 @@
 
 ## デモ
 
-[デモ動画を見る（英語、MP4）](../assets/askurl-demo-en.mp4)。Daytona が一時サンドボックスで本文を取得し、Nosana が生成した英語の回答がターミナルに表示されます。
+https://github.com/user-attachments/assets/d0e51fc4-6135-463f-99c5-d8102b2419c0
+
+Daytona が一時サンドボックスで本文を取得し、Nosana が生成した英語の回答がターミナルに表示されます。
+
+[MP4 をダウンロード](../assets/askurl-demo-en.mp4)
 
 ## 概要
 

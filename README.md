@@ -6,7 +6,11 @@
 
 ## Demo
 
-[Watch the terminal demo (English, MP4)](assets/askurl-demo-en.mp4). It shows Daytona creating a temporary sandbox and fetching the page, followed by Nosana generating a short English response.
+https://github.com/user-attachments/assets/d0e51fc4-6135-463f-99c5-d8102b2419c0
+
+It shows Daytona creating a temporary sandbox and fetching the page, followed by Nosana generating a short English response.
+
+[Download the MP4](assets/askurl-demo-en.mp4)
 
 ## Overview
 

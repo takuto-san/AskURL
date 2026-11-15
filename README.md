@@ -10,7 +10,24 @@ Docker Desktop を起動し、リポジトリのルートでイメージをビ�
 docker build -t askurl .
 ```
 
-Nosana の共有推論 API を使うには、`inference:use` 権限付きの API キーが必要です。[Nosana のキー発行手順](https://learn.nosana.com/api/get-api-key.html)を参照してください。
+### Qwen3.5-9B テンプレートを使う
+
+1. [Nosana の Qwen テンプレート](https://deploy.nosana.com/deployments/create?template=qwen-9b)を開き、Qwen 3.5 9B を選びます。
+2. RTX 3090 を選択し、時間あたりの料金を確認してデプロイを作成します。GPU クレジットが必要です。
+3. 起動後、デプロイ詳細の **Service URL** を取得し、下のコマンドに入れます。公開エンドポイントなので URL の共有は控え、疎通確認が終わったらデプロイを停止します。
+
+```sh
+docker run --rm \
+  -e NOSANA_SERVICE_URL='https://実際のサービスURL' \
+  -e NOSANA_MODEL=qwen3.5:9b \
+  askurl https://example.com/
+```
+
+このテンプレートのサービス URL には、Nosana の共有推論 API キーは不要です。`ページ本文を取得しました。` に続いて、モデルの回答が表示されれば成功です。[テンプレートの公式手順](https://nosana.com/blog/what-ai-models-can-you-run-on-an-3090/#1-can-an-rtx-3090-run-qwen35-9b-for-text-generation)
+
+### Nosana の共有推論 API を使う
+
+`inference:use` 権限付きの API キーが必要です。[Nosana のキー発行手順](https://learn.nosana.com/api/get-api-key.html)を参照してください。
 
 Mac のターミナル（zsh）で以下を実行します。プロンプトが表示されたらキーを貼り付けて Enter を押します。入力は画面に表示されません。
 
@@ -28,8 +45,5 @@ Mac のターミナル（zsh）で以下を実行します。プロンプトが�
 
 ## 動作確認の状況
 
-- Docker のビルドと、コンテナから `https://example.com/` の本文を取得できることを確認済みです。
-- コンテナから Nosana の `/v1/models` に到達し、未認証で `HTTP 401` が返ることを確認済みです。
-- 有効なキーを使った実際の回答生成は未確認です。リクエスト生成と回答表示は模擬 HTTP 応答で確認済みです。
-
-現行版の接続先は `https://inference.nosana.com/v1` です。テンプレートから立ち上げた個別のデプロイへの接続には、デプロイ先の URL を設定できるようにする変更が必要です。
+- Docker コンテナで `https://example.com/` の本文を取得し、Nosana 上の Qwen 3.5 9B が返した日本語の回答をターミナルに表示できることを確認済みです。
+- 共有推論 API には Docker コンテナから到達でき、未認証の `/v1/models` は `HTTP 401` を返すことを確認済みです。共有推論 API での回答生成は未確認です。

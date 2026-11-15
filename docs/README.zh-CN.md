@@ -4,13 +4,15 @@
 
 [日本語](README.ja.md) · [English](../README.md) · **简体中文**
 
-AskURL 是一个命令行工具。输入公开网页的 URL 后，它会提取正文，并让 Nosana 上的模型用一到两句话给出摘要或后续处理建议。支持 HTML 和纯文本。默认用日语回答，添加 `--language en` 可切换为英语。
-
-在 Daytona 模式下，网页正文由隔离的临时沙箱提取。运行在 Docker 中的 CLI 会把正文发送给 Nosana，并在终端显示模型的回答。
-
 ## 演示
 
 [观看终端演示（英语，MP4）](../assets/askurl-demo-en.mp4)。视频展示了 Daytona 如何在临时沙箱内获取网页正文，以及 Nosana 生成的简短英文回答如何显示在终端中。
+
+## 项目简介
+
+AskURL 是一个命令行工具。输入公开网页的 URL 后，它会提取正文，并让 Nosana 上的模型用一到两句话给出摘要或后续处理建议。支持 HTML 和纯文本。默认用日语回答，添加 `--language en` 可切换为英语。
+
+在 Daytona 模式下，网页正文由隔离的临时沙箱提取。运行在 Docker 中的 CLI 会把正文发送给 Nosana，并在终端显示模型的回答。
 
 ## 使用 Docker 运行
 

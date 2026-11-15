@@ -4,13 +4,15 @@
 
 [日本語](docs/README.ja.md) · **English** · [简体中文](docs/README.zh-CN.md)
 
-AskURL is a command-line tool that reads a public web page and asks a model on Nosana for a short summary or suggested next step. It accepts HTML and plain text and aims for an answer of one or two sentences. Responses are in Japanese by default. Add `--language en` for English.
-
-In Daytona mode, an isolated, temporary sandbox fetches the page. The CLI runs in Docker, sends the extracted text to Nosana, and prints the answer in your terminal.
-
 ## Demo
 
 [Watch the terminal demo (English, MP4)](assets/askurl-demo-en.mp4). It shows Daytona creating a temporary sandbox and fetching the page, followed by Nosana generating a short English response.
+
+## Overview
+
+AskURL is a command-line tool that reads a public web page and asks a model on Nosana for a short summary or suggested next step. It accepts HTML and plain text and aims for an answer of one or two sentences. Responses are in Japanese by default. Add `--language en` for English.
+
+In Daytona mode, an isolated, temporary sandbox fetches the page. The CLI runs in Docker, sends the extracted text to Nosana, and prints the answer in your terminal.
 
 ## Run with Docker
 
